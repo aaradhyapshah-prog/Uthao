@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTHAO — Bid. Ride. Move.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">U</span>
+                <div>
+                    <h1>UTHAO</h1>
+                    <p class="tagline">You set the fare. Drivers compete.</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <p id="user-chip" class="user-chip hidden"></p>
+                <button id="theme-toggle" class="icon-btn pop" type="button" aria-label="Toggle theme">
+                    <span class="theme-icon" data-mode="dark">☀</span>
+                    <span class="theme-icon" data-mode="light">☾</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section id="login-section" class="panel section">
+                <div class="hero-card">
+                    <p class="eyebrow">Welcome back</p>
+                    <h2>Hop in. Name your price.</h2>
+                    <p class="lede">City rides, intercity, courier, freight and food — seven services, one app.</p>
+                </div>
+                <form id="authForm" class="glass-form" novalidate>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@email.com" required>
+                    <span class="error-message" id="email-error">Enter a valid email</span>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 4 characters" required>
+                    <span class="error-message" id="password-error">Password required</span>
+
+                    <button type="submit" class="primary-btn pop">Enter UTHAO</button>
+                    <p id="login-status" class="status-line"></p>
+                </form>
+            </section>
+
+            <section id="dashboard-section" class="section hidden">
+                <div class="map-banner">
+                    <div class="map-copy">
+                        <p class="eyebrow">Live in your city</p>
+                        <h2>Where to?</h2>
+                        <p>Pick a service. Bid the fare. Drivers come to you.</p>
+                    </div>
+                    <div class="route-dots" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <div class="service-grid">
+                    <button class="service-card pop" data-section="ride-section">
+                        <span class="service-icon ride">◆</span>
+                        <strong>City Ride</strong>
+                        <em>Bid your fare</em>
+                    </button>
+                    <button class="service-card pop" data-section="intercity-section">
+                        <span class="service-icon intercity">▣</span>
+                        <strong>Intercity</strong>
+                        <em>City to city</em>
+                    </button>
+                    <button class="service-card pop" data-section="courier-section">
+                        <span class="service-icon courier">✉</span>
+                        <strong>Courier</strong>
+                        <em>Send a parcel</em>
+                    </button>
+                    <button class="service-card pop" data-section="freight-section">
+                        <span class="service-icon freight">▣</span>
+                        <strong>Freight</strong>
+                        <em>Move cargo</em>
+                    </button>
+                    <button class="service-card pop" data-section="food-section">
+                        <span class="service-icon food">✦</span>
+                        <strong>Food</strong>
+                        <em>Order meals</em>
+                    </button>
+                    <button class="service-card pop" data-section="wallet-section">
+                        <span class="service-icon wallet">◈</span>
+                        <strong>Wallet</strong>
+                        <em>Coupons & offers</em>
+                    </button>
+                    <button class="service-card pop" data-section="activity-section">
+                        <span class="service-icon activity">◷</span>
+                        <strong>Activity</strong>
+                        <em>Trips & orders</em>
+                    </button>
+                </div>
+            </section>
+
+            <section id="ride-section" class="panel section hidden">
+                <h2>City Ride</h2>
+                <p class="lede">Set pickup, drop, and the price you want to pay.</p>
+                <form id="rideForm" class="glass-form">
+                    <label for="pickup">Pickup</label>
+                    <input type="text" id="pickup" placeholder="Current location" required>
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" placeholder="Where are you going?" required>
+                    <label for="bid">Your bid (₹) <span id="bid-value">180</span></label>
+                    <input type="range" id="bid" min="50" max="2000" step="10" value="180">
+                    <label for="comments">Note for driver</label>
+                    <textarea id="comments" placeholder="Gate, landmark, extra stop…"></textarea>
+                    <button type="submit" class="primary-btn pop">Post ride</button>
+                </form>
+                <div id="ride-result" class="result-box hidden"></div>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="intercity-section" class="panel section hidden">
+                <h2>Intercity</h2>
+                <p class="lede">Long-distance trips with seats you choose.</p>
+                <form id="intercityForm" class="glass-form">
+                    <label for="origin">From</label>
+                    <input type="text" id="origin" placeholder="Starting city" required>
+                    <label for="city">To</label>
+                    <input type="text" id="city" placeholder="Destination city" required>
+                    <label for="trip-date">Travel date</label>
+                    <input type="date" id="trip-date" required>
+                    <label for="seats">Seats</label>
+                    <select id="seats">
+                        <option value="1">1 seat</option>
+                        <option value="2">2 seats</option>
+                        <option value="3">3 seats</option>
+                        <option value="4">Full car</option>
+                    </select>
+                    <button type="submit" class="primary-btn pop">Find drivers</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="courier-section" class="panel section hidden">
+                <h2>Courier</h2>
+                <p class="lede">Same-city parcels with live pickup.</p>
+                <form id="courierForm" class="glass-form">
+                    <label for="c-pickup">Pickup address</label>
+                    <input type="text" id="c-pickup" placeholder="From" required>
+                    <label for="c-drop">Drop address</label>
+                    <input type="text" id="c-drop" placeholder="To" required>
+                    <label for="parcel">Parcel type</label>
+                    <select id="parcel">
+                        <option value="Documents">Documents</option>
+                        <option value="Small box">Small box</option>
+                        <option value="Fragile">Fragile</option>
+                        <option value="Grocery bag">Grocery bag</option>
+                    </select>
+                    <button type="submit" class="primary-btn pop">Book courier</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="freight-section" class="panel section hidden">
+                <h2>Freight</h2>
+                <p class="lede">Trucks and pickups for heavier loads.</p>
+                <form id="freightForm" class="glass-form">
+                    <label for="f-pickup">Pickup</label>
+                    <input type="text" id="f-pickup" placeholder="Warehouse / shop" required>
+                    <label for="f-drop">Drop</label>
+                    <input type="text" id="f-drop" placeholder="Site / city" required>
+                    <label for="vehicle">Vehicle</label>
+                    <select id="vehicle">
+                        <option value="Mini truck">Mini truck</option>
+                        <option value="Pickup">Pickup</option>
+                        <option value="Lorry">Lorry</option>
+                    </select>
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" min="10" value="200" required>
+                    <button type="submit" class="primary-btn pop">Get quote</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="food-section" class="panel section hidden">
+                <h2>Food</h2>
+                <p class="lede">Meals from nearby kitchens, delivered fast.</p>
+                <form id="orderFoodForm" class="glass-form">
+                    <label for="dish">Dish</label>
+                    <input type="text" id="dish" placeholder="What are you craving?" required>
+                    <label for="restaurant">Kitchen</label>
+                    <select id="restaurant">
+                        <option value="">Choose a kitchen</option>
+                        <option value="Pizza Hut">Pizza Hut</option>
+                        <option value="Domino's">Domino's</option>
+                        <option value="Burger King">Burger King</option>
+                        <option value="KFC">KFC</option>
+                    </select>
+                    <label for="coupon">Coupon (optional)</label>
+                    <input type="text" id="coupon" placeholder="UTHAO10">
+                    <button type="submit" class="primary-btn pop">Place order</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="wallet-section" class="panel section hidden">
+                <h2>Wallet</h2>
+                <p class="lede">Coupons and city-wide offers.</p>
+                <div id="coupon-list" class="chip-row"></div>
+                <div class="apply-row">
+                    <input type="text" id="apply-coupon" placeholder="Enter coupon code">
+                    <button id="apply-coupon-btn" class="primary-btn pop" type="button">Apply</button>
+                </div>
+                <h3 class="subhead">Offers</h3>
+                <ul id="offer-list" class="offer-list"></ul>
+                <label for="offer-feedback">How are the deals?</label>
+                <textarea id="offer-feedback" placeholder="Tell us what you want more of"></textarea>
+                <button id="submit-feedback-btn" class="primary-btn pop" type="button">Send feedback</button>
+                <p id="feedback-message" class="status-line hidden"></p>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="activity-section" class="panel section hidden">
+                <h2>Activity</h2>
+                <p class="lede">Recent rides, parcels, freight, and food.</p>
+                <ul id="activity-list" class="activity-list"></ul>
+                <p id="orders-message" class="status-line hidden">No trips yet. Book something from Home.</p>
+                <button id="clear-orders-btn" class="danger-btn pop" type="button">Clear activity</button>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="settings-section" class="panel section hidden">
+                <h2>Settings</h2>
+                <form id="settingsForm" class="glass-form">
+                    <label for="notification-preferences">Notifications</label>
+                    <select id="notification-preferences">
+                        <option value="all">All alerts</option>
+                        <option value="essential">Essential only</option>
+                        <option value="none">Mute</option>
+                    </select>
+                    <label for="password-change">New password</label>
+                    <input type="password" id="password-change" placeholder="Leave blank to keep current">
+                    <button type="submit" class="primary-btn pop">Save</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+
+            <section id="help-section" class="panel section hidden">
+                <h2>Help</h2>
+                <p class="lede">Safety, billing, or a stuck trip — we are here.</p>
+                <form id="helpForm" class="glass-form">
+                    <label for="support-message">Describe the issue</label>
+                    <textarea id="support-message" placeholder="What happened?"></textarea>
+                    <button type="submit" class="primary-btn pop">Send to support</button>
+                </form>
+                <button class="ghost-btn pop back-btn" data-target="dashboard-section" type="button">Back</button>
+            </section>
+        </main>
+
+        <nav id="dock" class="dock hidden" aria-label="App navigation">
+            <button class="dock-btn pop is-active" data-target="dashboard-section" type="button">Home</button>
+            <button class="dock-btn pop" data-target="activity-section" type="button">Activity</button>
+            <button class="dock-btn pop" data-target="wallet-section" type="button">Wallet</button>
+            <button class="dock-btn pop" data-target="settings-section" type="button">Settings</button>
+            <button class="dock-btn pop" data-target="help-section" type="button">Help</button>
+        </nav>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="script.js"></script>
+</body>
+</html>
