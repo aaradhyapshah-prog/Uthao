@@ -24,10 +24,10 @@ function drawRoute(){
   const a = pickupMarker.getLatLng(), b = dropMarker.getLatLng();
   const latlngs = [a, b];
   if(routeLine) map.removeLayer(routeLine);
-  routeLine = L.polyline(latlngs, {color:"blue"}).addTo(map);
+  routeLine = L.polyline(latlngs, {color:"#34d399", weight:4}).addTo(map);
   map.fitBounds(routeLine.getBounds(), {padding:[40,40]});
   const dist_km = haversine(a.lat,a.lng,b.lat,b.lng).toFixed(2);
-  const eta_min = Math.max(5, Math.round(dist_km / 0.6 * 6));
+  const eta_min = Math.max(3, Math.round(dist_km / 0.6 * 6));
   const info = document.getElementById("route-info");
   if(info) info.innerText = `Distance: ${dist_km} km • ETA: ${eta_min} min • Fare: NPR ${calcFare(dist_km)}`;
 }
@@ -42,20 +42,8 @@ function haversine(lat1,lon1,lat2,lon2){
 
 function requestRide(){
   if(!routeLine) return alert("Set pickup and dropoff first.");
-  const fakeOrder = {
-    service_type: "Ride",
-    pickup: JSON.stringify(pickupMarker.getLatLng()),
-    dropoff: JSON.stringify(dropMarker.getLatLng()),
-    fare: calcFare(haversine(pickupMarker.getLatLng().lat,pickupMarker.getLatLng().lng,dropMarker.getLatLng().lat,dropMarker.getLatLng().lng))
-  };
-  fetch("/api/orders", {
-    method: "POST",
-    headers: { "Content-Type":"application/json", "Authorization":"Bearer "+localStorage.getItem("token") },
-    body: JSON.stringify(fakeOrder)
-  }).then(r=>r.json()).then(order=>{
-    simulateDriverAlong(routeLine.getLatLngs());
-    alert("Ride booked: ID " + order.id);
-  });
+  simulateDriverAlong(routeLine.getLatLngs());
+  alert("Ride booked (demo)");
 }
 
 function simulateDriverAlong(latlngs){
@@ -66,5 +54,5 @@ function simulateDriverAlong(latlngs){
   const interval = setInterval(()=>{
     if(i<=0){ clearInterval(interval); return; }
     driverMarker.setLatLng(latlngs[i-1]); i--;
-  }, 1000);
+  }, 800);
 }
