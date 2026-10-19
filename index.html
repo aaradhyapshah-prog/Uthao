@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Uthao — Demo</title>
+  <title data-i18n="page_title">Uthao — Demo</title>
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="/static/js/i18n.js" defer></script>
@@ -16,7 +16,7 @@
   <header class="topbar">
     <div class="branding">
       <div class="logo">Uthao</div>
-      <div class="tag">You set the fare. Drivers compete.</div>
+      <div class="tag" data-i18n="tagline">You set the fare. Drivers compete.</div>
     </div>
     <div class="top-actions">
       <select id="lang-select" aria-label="language">
@@ -32,32 +32,32 @@
     <section class="auth-container" id="auth-view">
       <form id="login-form" onsubmit="event.preventDefault(); handleLogin();">
         <div class="hero-card">
-          <div class="kicker">WELCOME BACK</div>
-          <h1 data-i18n="login_title">Hop in. Name your price.</h1>
-          <p class="sub">City rides, intercity, courier, freight and food — seven services, one app.</p>
+          <div class="kicker" data-i18n="welcome_kicker">WELCOME BACK</div>
+          <h1 data-i18n="welcome_title">Hop in. Name your price.</h1>
+          <p class="sub" data-i18n="welcome_sub">City rides, intercity, courier, freight and food — seven services, one app.</p>
         </div>
         <div class="form-card">
-          <label>Email</label>
-          <input id="email" name="email" type="email" placeholder="Email" required />
-          <label>Password</label>
-          <input id="password" name="password" type="password" placeholder="Password" required />
-          <button type="submit" class="btn">Enter UTHAO</button>
-          <p class="muted">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
-          <div id="login-error" class="login-error" style="display:none;color:#fca5a5;margin-top:12px;"></div>
+          <label data-i18n="label_email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          <label data-i18n="label_password">Password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
+          <button type="submit" class="btn" data-i18n="btn_enter">Enter UTHAO</button>
+          <p class="muted"><span data-i18n="no_account">Don't have an account?</span> <a href="#" id="show-signup" data-i18n="link_signup">Sign up</a></p>
+          <div id="login-error" class="login-error" style="display:none;color:#fca5a5;margin-top:12px;" data-i18n="login_error">Could not read response.</div>
         </div>
       </form>
 
       <form id="signup-form" class="auth-container hidden" onsubmit="event.preventDefault(); handleSignup();">
         <div class="form-card">
-          <h2>Create account</h2>
-          <label>Full name</label>
+          <h2 data-i18n="signup_title">Create account</h2>
+          <label data-i18n="label_fullname">Full name</label>
           <input id="su-name" type="text" required />
-          <label>Email</label>
+          <label data-i18n="label_email">Email</label>
           <input id="su-email" type="email" required />
-          <label>Password</label>
+          <label data-i18n="label_password">Password</label>
           <input id="su-password" type="password" required />
-          <button type="submit" class="btn">Sign up</button>
-          <p class="muted">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+          <button type="submit" class="btn" data-i18n="btn_signup">Sign up</button>
+          <p class="muted"><span data-i18n="have_account">Already have an account?</span> <a href="#" id="show-login" data-i18n="link_signin">Sign in</a></p>
         </div>
       </form>
     </section>
@@ -88,44 +88,44 @@
       <section id="ride-panel" class="panel hidden">
         <div id="map" style="height:400px"></div>
         <div class="ride-controls">
-          <input id="pickup" placeholder="Pickup"/>
-          <input id="dropoff" placeholder="Dropoff"/>
-          <button onclick="setPinsFromInputs()">Set Pins</button>
-          <button onclick="bookRideFromUI()">Book Ride</button>
+          <input id="pickup" placeholder="Pickup" data-i18n-placeholder="ph_pickup" />
+          <input id="dropoff" placeholder="Dropoff" data-i18n-placeholder="ph_dropoff" />
+          <button onclick="setPinsFromInputs()" data-i18n="btn_setpins">Set Pins</button>
+          <button onclick="bookRideFromUI()" data-i18n="btn_bookride">Book Ride</button>
           <div id="route-info"></div>
         </div>
       </section>
 
       <section id="settings-panel" class="panel hidden settings-panel">
-        <h2>Settings</h2>
+        <h2 data-i18n="settings_title">Settings</h2>
         <div class="setting-row">
-          <label>Language</label>
+          <label data-i18n="settings_lang">Language</label>
           <select id="settings-lang"><option value="en">English</option><option value="ne">नेपाली</option></select>
         </div>
         <div class="setting-row">
-          <label>Theme</label>
-          <select id="settings-theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+          <label data-i18n="settings_theme">Theme</label>
+          <select id="settings-theme"><option value="system" data-i18n="opt_system">System</option><option value="light" data-i18n="opt_light">Light</option><option value="dark" data-i18n="opt_dark">Dark</option></select>
         </div>
         <div class="setting-row">
-          <label>Default currency</label>
+          <label data-i18n="settings_currency">Default currency</label>
           <select id="settings-currency"><option value="NPR">NPR</option><option value="USD">USD</option></select>
         </div>
         <div class="setting-row">
-          <label>Default vehicle</label>
+          <label data-i18n="settings_vehicle">Default vehicle</label>
           <select id="settings-vehicle"><option>Economy</option><option>Premium</option><option>Bike</option></select>
         </div>
       </section>
 
       <section id="history-panel" class="panel hidden">
-        <h2>Activity / History</h2>
+        <h2 data-i18n="history_title">Activity / History</h2>
         <div id="history-list"></div>
       </section>
 
       <section id="support-panel" class="panel hidden">
-        <h2>Support</h2>
-        <p>Send feedback or open a ticket (demo only).</p>
+        <h2 data-i18n="support_title">Support</h2>
+        <p data-i18n="support_desc">Send feedback or open a ticket (demo only).</p>
         <textarea id="support-text" rows="4" style="width:100%"></textarea>
-        <button class="btn" onclick="submitSupport()">Send</button>
+        <button class="btn" onclick="submitSupport()" data-i18n="btn_send">Send</button>
       </section>
 
     </section>
@@ -134,28 +134,28 @@
     <div id="account-modal" class="modal hidden">
       <div class="modal-content">
         <button class="modal-close" onclick="closeAccount()">✕</button>
-        <h3>Account</h3>
+        <h3 data-i18n="account_title">Account</h3>
         <div class="avatar-row">
           <img id="acct-avatar" src="/static/img/default-avatar.svg" alt="avatar" />
           <input id="avatar-file" type="file" accept="image/*" />
         </div>
-        <label>Full name</label>
+        <label data-i18n="label_fullname">Full name</label>
         <input id="acct-username" />
-        <label>Email</label>
+        <label data-i18n="label_email">Email</label>
         <input id="acct-email" />
-        <label>Phone</label>
+        <label data-i18n="label_phone">Phone</label>
         <input id="acct-phone" />
-        <label>Change password</label>
-        <input id="acct-current-pass" type="password" placeholder="Current password" />
-        <input id="acct-new-pass" type="password" placeholder="New password" />
+        <label data-i18n="label_change_password">Change password</label>
+        <input id="acct-current-pass" type="password" placeholder="" />
+        <input id="acct-new-pass" type="password" placeholder="" />
         <div style="display:flex;gap:8px;margin-top:12px;">
-          <button class="btn" onclick="saveAccount()">Save</button>
-          <button class="btn" onclick="logout()">Logout</button>
+          <button class="btn" onclick="saveAccount()" data-i18n="btn_save">Save</button>
+          <button class="btn" onclick="logout()" data-i18n="btn_logout">Logout</button>
         </div>
       </div>
     </div>
 
-    <footer style="padding:16px;text-align:center;color:var(--text);opacity:0.8;">This is a static demo on GitHub Pages. Server-side features (login, orders) are simulated in the browser.</footer>
+    <footer style="padding:16px;text-align:center;color:var(--text);opacity:0.8;" data-i18n="footer_note">This is a static demo on GitHub Pages. Server-side features (login, orders) are simulated in the browser.</footer>
   </main>
 </body>
 </html>
