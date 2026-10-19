@@ -53,6 +53,7 @@
     const settings = getSettings(); applyTheme(settings.theme);
 
     const profilePic = document.getElementById('profile-pic');
+    // Only attach the click handler; opening the account modal happens only when user clicks the avatar
     profilePic && profilePic.addEventListener('click', openAccount);
 
     document.getElementById('show-signup')?.addEventListener('click', (e)=>{ e.preventDefault(); toggleAuthForms(true); });
@@ -77,7 +78,8 @@
     const cur = getCurrentUser();
     if(cur){ showDashboardFor(cur); } else { showLogin(); }
 
-    populateAccountModal();
+    // Do NOT auto-open or populate the account modal on load. The modal should only open when the user clicks their profile picture.
+
     renderHistory();
   });
 
@@ -91,7 +93,7 @@
       const u = createUser({username,email,password});
       alert(window.t('alert_signup_success') || 'Account created');
       showDashboardFor(u);
-    }catch(err){ alert(window.t('login_error')+': '+err.message); }
+    }catch(err){ alert((window.t('login_error') || 'Error')+': '+err.message); }
   }
 
   window.handleLogin = function(){
