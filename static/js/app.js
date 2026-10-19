@@ -27,7 +27,7 @@
     if(findUserByEmail(email)) throw new Error('Email already registered');
     const id = Date.now();
     const hash = btoa(password);
-    const user = {id, username, email, passwordHash: hash, phone:'', avatar:'/static/img/default-avatar.svg'};
+    const user = {id, username, email, passwordHash: hash, phone:'', avatar:'./static/img/default-avatar.svg'};
     users.push(user); setUsers(users); setCurrentUser(user); return user;
   }
 
@@ -109,7 +109,7 @@
   function demoLogin(){
     let u = getCurrentUser();
     if(!u){ const users = getUsers(); if(users.length) u = users[0]; }
-    if(!u){ u = {id:1, username:'Demo User', email:'demo@uthao.local', passwordHash:btoa('demo'), phone:'', avatar:'/static/img/default-avatar.svg'}; setUsers([u]); setCurrentUser(u); }
+    if(!u){ u = {id:1, username:'Demo User', email:'demo@uthao.local', passwordHash:btoa('demo'), phone:'', avatar:'./static/img/default-avatar.svg'}; setUsers([u]); setCurrentUser(u); }
     showDashboardFor(u);
   }
 
@@ -121,18 +121,18 @@
 
   function showLogin(){ hide(document.getElementById('dashboard-view')); show(document.getElementById('auth-view')); }
   function showDashboardFor(user){
-    document.getElementById('profile-pic').src = user.avatar || '/static/img/default-avatar.svg';
+    document.getElementById('profile-pic').src = user.avatar || './static/img/default-avatar.svg';
     hide(document.getElementById('auth-view')); show(document.getElementById('dashboard-view'));
   }
 
   // Account modal
   window.openAccount = function(){ const cur=getCurrentUser(); if(!cur) return alert(window.t('login_error') || 'Not signed in'); const modal=document.getElementById('account-modal'); show(modal); populateAccountModal(); }
   window.closeAccount = function(){ hide(document.getElementById('account-modal')); }
-  function populateAccountModal(){ const cur=getCurrentUser(); if(!cur) return; document.getElementById('acct-username').value = cur.username || ''; document.getElementById('acct-email').value = cur.email || ''; document.getElementById('acct-phone').value = cur.phone || ''; document.getElementById('acct-avatar').src = cur.avatar || '/static/img/default-avatar.svg'; }
+  function populateAccountModal(){ const cur=getCurrentUser(); if(!cur) return; document.getElementById('acct-username').value = cur.username || ''; document.getElementById('acct-email').value = cur.email || ''; document.getElementById('acct-phone').value = cur.phone || ''; document.getElementById('acct-avatar').src = cur.avatar || './static/img/default-avatar.svg'; }
 
   window.handleAvatarFile = function(e){ const file = e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload = function(){ const data = reader.result; const cur = getCurrentUser(); cur.avatar = data; setCurrentUser(cur); const users = getUsers(); const uidx = users.findIndex(x=>x.id===cur.id); if(uidx>=0){ users[uidx].avatar=data; setUsers(users); } document.getElementById('profile-pic').src = data; document.getElementById('acct-avatar').src = data; }; reader.readAsDataURL(file); }
 
-  window.saveAccount = function(){ const cur = getCurrentUser(); if(!cur) return alert(window.t('login_error') || 'Not signed in'); const users = getUsers(); const idx = users.findIndex(x=>x.id===cur.id); const uname = document.getElementById('acct-username').value.trim(); const email = document.getElementById('acct-email').value.trim(); const phone = document.getElementById('acct-phone').value.trim(); if(idx<0) return; users[idx].username = uname; users[idx].email = email; users[idx].phone = phone; const curPass = document.getElementById('acct-current-pass').value; const newPass = document.getElementById('acct-new-pass').value; if(curPass && newPass){ if(users[idx].passwordHash !== btoa(curPass)){ return alert(window.t('login_error') || 'Current password incorrect (demo).'); } users[idx].passwordHash = btoa(newPass); } setUsers(users); users[idx].avatar = users[idx].avatar || '/static/img/default-avatar.svg'; setCurrentUser(users[idx]); populateAccountModal(); alert(window.t('alert_account_saved') || 'Account saved (demo).'); }
+  window.saveAccount = function(){ const cur = getCurrentUser(); if(!cur) return alert(window.t('login_error') || 'Not signed in'); const users = getUsers(); const idx = users.findIndex(x=>x.id===cur.id); const uname = document.getElementById('acct-username').value.trim(); const email = document.getElementById('acct-email').value.trim(); const phone = document.getElementById('acct-phone').value.trim(); if(idx<0) return; users[idx].username = uname; users[idx].email = email; users[idx].phone = phone; const curPass = document.getElementById('acct-current-pass').value; const newPass = document.getElementById('acct-new-pass').value; if(curPass && newPass){ if(users[idx].passwordHash !== btoa(curPass)){ return alert(window.t('login_error') || 'Current password incorrect (demo).'); } users[idx].passwordHash = btoa(newPass); } setUsers(users); users[idx].avatar = users[idx].avatar || './static/img/default-avatar.svg'; setCurrentUser(users[idx]); populateAccountModal(); alert(window.t('alert_account_saved') || 'Account saved (demo).'); }
 
   window.logout = function(){ logoutUser(); location.reload(); }
 

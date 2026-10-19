@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title data-i18n="page_title">Uthao — Demo</title>
-  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="./static/css/styles.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="/static/js/i18n.js" defer></script>
-  <script src="/static/js/theme.js" defer></script>
-  <script src="/static/js/app.js" defer></script>
+  <script src="./static/js/i18n.js" defer></script>
+  <script src="./static/js/theme.js" defer></script>
+  <script src="./static/js/app.js" defer></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="/static/js/map.js" defer></script>
+  <script src="./static/js/map.js" defer></script>
 </head>
 <body class="theme-system">
   <header class="topbar">
@@ -24,7 +24,7 @@
         <option value="ne">ने</option>
       </select>
       <button id="theme-toggle" aria-label="toggle theme">🌓</button>
-      <img id="profile-pic" src="/static/img/default-avatar.svg" class="avatar" alt="profile"/>
+      <img id="profile-pic" src="./static/img/default-avatar.svg" class="avatar" alt="profile"/>
     </div>
   </header>
   <main id="main">
@@ -136,7 +136,7 @@
         <button class="modal-close" onclick="closeAccount()">✕</button>
         <h3 data-i18n="account_title">Account</h3>
         <div class="avatar-row">
-          <img id="acct-avatar" src="/static/img/default-avatar.svg" alt="avatar" />
+          <img id="acct-avatar" src="./static/img/default-avatar.svg" alt="avatar" />
           <input id="avatar-file" type="file" accept="image/*" />
         </div>
         <label data-i18n="label_fullname">Full name</label>
