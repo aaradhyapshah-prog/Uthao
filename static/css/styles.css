@@ -1,0 +1,26 @@
+/* Core theme variables */
+:root {
+  --bg: #f6f7fb;
+  --text: #0f172a;
+  --card: #ffffff;
+  --accent: #0b84ff;
+}
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --text: #e6eef8;
+  --card: #0f1724;
+  --accent: #7cc0ff;
+}
+*{box-sizing:border-box}
+body { background:var(--bg); color:var(--text); font-family:Inter,system-ui,Arial; margin:0; }
+.topbar { height:56px; display:flex; justify-content:space-between; align-items:center; padding:0 16px; background:var(--card); box-shadow:0 1px 6px rgba(0,0,0,0.06); }
+.avatar { width:36px; height:36px; border-radius:50%; cursor:pointer; }
+.dashboard { padding:24px; }
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:18px; }
+.tile { background:var(--card); padding:18px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:transform .18s ease, box-shadow .18s; cursor:pointer; position:relative; z-index:0; transform-origin:center; }
+.tile .icon{ font-size:36px }
+.tile:hover { transform: translateY(-8px) scale(1.5); z-index:10; box-shadow:0 12px 30px rgba(11,132,255,0.12); }
+.hidden{ display:none; }
+.auth-container{ max-width:360px; margin:80px auto; background:var(--card); padding:24px; border-radius:12px; box-shadow:0 8px 20px rgba(2,6,23,0.08); }
+.btn{ background:var(--accent); color:white; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+.ride-controls{ margin-top:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }

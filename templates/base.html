@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Uthao</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/i18n.js" defer></script>
+  <script src="/static/js/theme.js" defer></script>
+  <script src="/static/js/app.js" defer></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+</head>
+<body class="theme-system">
+  <header class="topbar">
+    <div class="logo">Uthao</div>
+    <div class="top-actions">
+      <select id="lang-select" aria-label="language">
+        <option value="en">EN</option>
+        <option value="ne">ने</option>
+      </select>
+      <button id="theme-toggle" aria-label="toggle theme">🌓</button>
+      <img id="profile-pic" src="/static/img/default-avatar.svg" class="avatar" />
+    </div>
+  </header>
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="dashboard">
+  <div class="tiles">
+    <div class="tile" data-feature="ride" onclick="openFeature('ride')">
+      <div class="icon">🚗</div><div class="label" data-i18n="tile_ride">Ride</div>
+    </div>
+    <div class="tile" data-feature="food" onclick="openFeature('food')">
+      <div class="icon">🍔</div><div class="label" data-i18n="tile_food">Food</div>
+    </div>
+    <div class="tile" data-feature="courier" onclick="openFeature('courier')">
+      <div class="icon">📦</div><div class="label" data-i18n="tile_courier">Courier</div>
+    </div>
+    <div class="tile" data-feature="settings" onclick="openFeature('settings')">
+      <div class="icon">⚙️</div><div class="label" data-i18n="tile_settings">Settings</div>
+    </div>
+    <div class="tile" data-feature="history" onclick="openFeature('history')">
+      <div class="icon">🧾</div><div class="label" data-i18n="tile_history">Activity</div>
+    </div>
+    <div class="tile" data-feature="support" onclick="openFeature('support')">
+      <div class="icon">💬</div><div class="label" data-i18n="tile_support">Support</div>
+    </div>
+  </div>
+
+  <section id="ride-panel" class="panel hidden">
+    <div id="map" style="height:400px"></div>
+    <div class="ride-controls">
+      <input id="pickup" placeholder="Pickup"/>
+      <input id="dropoff" placeholder="Dropoff"/>
+      <button onclick="setPinsFromInputs()">Set Pins</button>
+      <button onclick="requestRide()">Book Ride</button>
+      <div id="route-info"></div>
+    </div>
+  </section>
+</section>
+
+<script src="/static/js/map.js" defer></script>
+{% endblock %}
