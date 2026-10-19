@@ -101,6 +101,19 @@ async def upload_avatar(file: UploadFile = File(...), user=Depends(get_current_u
         return {"avatar": db_user.avatar}
 
 
+@app.post("/api/profile/change-password")
+def change_password(current_password: str = Form(...), new_password: str = Form(...), user=Depends(get_current_user)):
+    """Change password endpoint verifies current password then updates to a new hashed password."""
+    with Session(engine) as session:
+        db_user = session.get(User, user.id)
+        if not verify_password(current_password, db_user.hashed_password):
+            raise HTTPException(status_code=400, detail="Current password is incorrect")
+        db_user.hashed_password = get_password_hash(new_password)
+        session.add(db_user)
+        session.commit()
+        return {"status": "ok", "message": "Password updated"}
+
+
 @app.post("/api/orders")
 def create_order(order: Order, user=Depends(get_current_user)):
     order.user_id = user.id

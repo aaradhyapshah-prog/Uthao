@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from fastapi import Depends, HTTPException, Header
@@ -6,7 +7,9 @@ from sqlmodel import Session, select
 from db import engine
 from passlib.context import CryptContext
 
-SECRET_KEY = "change-this-secret-in-prod"
+# Read SECRET_KEY from environment for production safety. Falls back to an insecure default
+# for local development, but you should set SECRET_KEY in your environment before deploying.
+SECRET_KEY = os.getenv("SECRET_KEY", "change-this-secret-in-prod")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7
 
