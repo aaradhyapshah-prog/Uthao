@@ -1,6 +1,6 @@
 const DICT = {
   en: {
-    login_title: "Welcome back",
+    login_title: "Hop in. Name your price.",
     tile_ride: "Ride",
     tile_food: "Food",
     tile_courier: "Courier",
@@ -9,7 +9,7 @@ const DICT = {
     tile_support: "Support"
   },
   ne: {
-    login_title: "फेरि स्वागत छ",
+    login_title: "राइडमा सवार हुनुहोस्। मूल्य सेट गर्नुहोस्।",
     tile_ride: "राइड",
     tile_food: "खाना",
     tile_courier: "कुरियर",

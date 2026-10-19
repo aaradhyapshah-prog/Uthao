@@ -32,24 +32,10 @@ function drawRoute(){
   if(info) info.innerText = `Distance: ${dist_km} km • ETA: ${eta_min} min • Fare: NPR ${calcFare(dist_km)}`;
 }
 
-function calcFare(dist_km){ const base=60; return Math.round(base + dist_km*25); }
-
-function haversine(lat1,lon1,lat2,lon2){
-  const R=6371; const dLat=(lat2-lat1)*Math.PI/180; const dLon=(lon2-lon1)*Math.PI/180;
-  const a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
-  return R*2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
-
-function requestRide(){
-  if(!routeLine) return alert("Set pickup and dropoff first.");
-  simulateDriverAlong(routeLine.getLatLngs());
-  alert("Ride booked (demo)");
-}
-
 function simulateDriverAlong(latlngs){
   if(driverMarker) map.removeLayer(driverMarker);
   const start = latlngs[latlngs.length-1];
-  driverMarker = L.marker(start, {icon: L.divIcon({className:"driver-icon", html:"🚕"})}).addTo(map);
+  driverMarker = L.marker(start, {icon: L.divIcon({className:"driver-icon", html:"🚕", iconSize:[32,32]})}).addTo(map);
   let i = latlngs.length-1;
   const interval = setInterval(()=>{
     if(i<=0){ clearInterval(interval); return; }
