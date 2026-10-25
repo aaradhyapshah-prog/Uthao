@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="login-panel">
+      <main class="login-panel">
         <div class="stats-block">
           <p>2.4k+ <span>Active drivers</span></p>
           <p>4.8/5 <span>Average rating</span></p>
@@ -48,9 +48,11 @@
         <form id="authForm" class="auth-form" novalidate>
           <label for="email">Email</label>
           <input id="email" type="email" value="aaradhyapshah@gmail.com" />
+          <div class="error-message" id="email-error">Enter a valid email</div>
 
           <label for="password">Password</label>
           <input id="password" type="password" value="••••" />
+          <div class="error-message" id="password-error">Password required</div>
 
           <div class="remember-row">
             <label class="remember-box">
@@ -61,10 +63,10 @@
           </div>
 
           <button type="submit" class="primary-btn pop">Enter UTHAO</button>
-          <p id="login-status" class="status-line">Could not read response.</p>
-          <div class="status-pill">Could not read response.</div>
+          <p id="login-status" class="status-line hidden">Could not read response.</p>
+          <div class="status-pill hidden">Could not read response.</div>
         </form>
-      </div>
+      </main>
     </div>
 
     <div id="toast" class="toast" role="status"></div>
