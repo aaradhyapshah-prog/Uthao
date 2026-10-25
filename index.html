@@ -11,129 +11,163 @@
   </head>
   <body>
     <div class="app-shell">
-      <div class="statusbar" aria-hidden="true">
-        <span>1:56</span>
-        <div class="status-icons">
-          <span>◔</span>
-          <span>◍</span>
-          <span>◉</span>
-          <span>◐</span>
-        </div>
-      </div>
-
-      <div class="browser-bar" aria-label="Address bar">
-        <div class="browser-brand">
-          <span class="browser-home">⌂</span>
-          <span class="browser-url">ah-prog.github.io</span>
-        </div>
-        <div class="browser-actions">
-          <button class="browser-btn" type="button" aria-label="Add tab">＋</button>
-          <span class="badge">3</span>
-          <button class="browser-btn menu-btn" type="button" aria-label="More options">⋮</button>
-        </div>
-      </div>
-
-      <main id="login-screen" class="login-screen">
-        <div class="stats-block">
-          <p>2.4k+ <span>Active drivers</span></p>
-          <p>4.8/5 <span>Average rating</span></p>
-          <p>18 min <span>Quickest ride</span></p>
-        </div>
-
-        <div class="welcome-block">
-          <p class="eyebrow">WELCOME BACK</p>
-          <h1>Sign in to UTHAO</h1>
-        </div>
-
-        <form id="authForm" class="auth-form" novalidate>
-          <label for="email">Email</label>
-          <input id="email" type="email" value="aaradhyapshah@gmail.com" />
-          <div class="error-message" id="email-error">Enter a valid email</div>
-
-          <label for="password">Password</label>
-          <input id="password" type="password" value="••••" />
-          <div class="error-message" id="password-error">Password required</div>
-
-          <div class="remember-row">
-            <label class="remember-box">
-              <input type="checkbox" checked />
-              <span>Remember me</span>
-            </label>
-            <a href="#">Forgot password?</a>
-          </div>
-
-          <button type="submit" class="primary-btn pop">Enter UTHAO</button>
-          <p id="login-status" class="status-line hidden"></p>
-        </form>
-      </main>
-
-      <main id="dashboard-screen" class="dashboard-screen hidden">
-        <header class="dashboard-header">
-          <div class="dashboard-brand">
-            <div class="brand-mark">U</div>
-            <div>
-              <h2>Uthao</h2>
-              <p>You set the fare. Drivers compete.</p>
+      <div id="auth-screen" class="screen auth-screen">
+        <div class="auth-card">
+          <div class="auth-header">
+            <div class="brand-block">
+              <div class="brand-mark">U</div>
+              <div>
+                <span class="brand-name">UTHAO</span>
+              </div>
+            </div>
+            <div class="auth-switcher" aria-label="Authentication switch">
+              <button class="tab-btn active" data-auth="login" type="button">Login</button>
+              <button class="tab-btn" data-auth="signup" type="button">Sign Up</button>
             </div>
           </div>
-          <button id="profile-btn" class="profile-btn" type="button" aria-label="Profile">U</button>
+
+          <form id="login-form" class="auth-form active" novalidate>
+            <div class="field-group">
+              <label for="login-email">Email</label>
+              <input id="login-email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field-group">
+              <label for="login-password">Password</label>
+              <input id="login-password" type="password" placeholder="Enter password" required />
+            </div>
+            <button type="submit" class="primary-btn">Enter UTHAO</button>
+          </form>
+
+          <form id="signup-form" class="auth-form hidden" novalidate>
+            <div class="field-group">
+              <label for="signup-name">Full name</label>
+              <input id="signup-name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="field-group">
+              <label for="signup-email">Email</label>
+              <input id="signup-email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field-group">
+              <label for="signup-password">Password</label>
+              <input id="signup-password" type="password" placeholder="Create password" required />
+            </div>
+            <button type="submit" class="primary-btn">Create Account</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="app-screen" class="screen app-screen hidden">
+        <header class="topbar">
+          <div class="brand-block left-brand">
+            <div class="brand-mark">U</div>
+            <div>
+              <span class="brand-name">UTHAO</span>
+            </div>
+          </div>
+
+          <div class="topbar-tools">
+            <div class="lang-switch" aria-label="Language selector">
+              <button class="lang-btn active" data-lang="en" type="button">English</button>
+              <button class="lang-btn" data-lang="ne" type="button">नेपाली</button>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">☀</button>
+            <button id="profile-btn" class="profile-btn" type="button" aria-label="Open account modal">
+              <span>U</span>
+            </button>
+          </div>
         </header>
 
-        <section class="dashboard-banner">
-          <p class="eyebrow invert">LIVE IN YOUR CITY</p>
-          <h3>Where to?</h3>
-          <p>Pick a service. Bid the fare. Drivers come to you.</p>
-        </section>
+        <main class="dashboard">
+          <section class="welcome-panel">
+            <p class="eyebrow" data-i18n="welcomeLabel">Welcome</p>
+            <h1 data-i18n="heading">Where to?</h1>
+          </section>
 
-        <section class="services-grid">
-          <button class="service-card ride" type="button">
-            <span>◆</span>
-            <strong>City Ride</strong>
-            <small>Bid your fare</small>
-          </button>
-          <button class="service-card intercity" type="button">
-            <span>▣</span>
-            <strong>Intercity</strong>
-            <small>City to city</small>
-          </button>
-          <button class="service-card courier" type="button">
-            <span>✉</span>
-            <strong>Courier</strong>
-            <small>Send a parcel</small>
-          </button>
-          <button class="service-card freight" type="button">
-            <span>▣</span>
-            <strong>Freight</strong>
-            <small>Move cargo</small>
-          </button>
-          <button class="service-card food" type="button">
-            <span>✦</span>
-            <strong>Food</strong>
-            <small>Order meals</small>
-          </button>
-          <button class="service-card wallet" type="button">
-            <span>◈</span>
-            <strong>Wallet</strong>
-            <small>Offers</small>
-          </button>
-          <button class="service-card activity" type="button">
-            <span>◷</span>
-            <strong>Activity</strong>
-            <small>Trips</small>
-          </button>
-        </section>
+          <section class="feature-grid" aria-label="Feature cards">
+            <button class="feature-card" type="button" data-feature="ride">
+              <div class="card-icon ride-icon">◆</div>
+              <span data-i18n="ride">Ride</span>
+              <small data-i18n="rideSub">Fast pickups</small>
+            </button>
 
-        <nav class="bottom-nav" aria-label="Main navigation">
-          <button class="nav-item is-active" type="button">Home</button>
-          <button class="nav-item" type="button">Activity</button>
-          <button class="nav-item" type="button">Wallet</button>
-          <button class="nav-item" type="button">Settings</button>
-          <button class="nav-item" type="button">Help</button>
-        </nav>
-      </main>
+            <button class="feature-card" type="button" data-feature="food">
+              <div class="card-icon food-icon">✦</div>
+              <span data-i18n="food">Food</span>
+              <small data-i18n="foodSub">Order meals</small>
+            </button>
+
+            <button class="feature-card" type="button" data-feature="courier">
+              <div class="card-icon courier-icon">✉</div>
+              <span data-i18n="courier">Courier</span>
+              <small data-i18n="courierSub">Send parcels</small>
+            </button>
+
+            <button class="feature-card" type="button" data-feature="settings">
+              <div class="card-icon settings-icon">⚙</div>
+              <span data-i18n="settings">Settings</span>
+              <small data-i18n="settingsSub">Preferences</small>
+            </button>
+
+            <button class="feature-card" type="button" data-feature="activity">
+              <div class="card-icon activity-icon">◷</div>
+              <span data-i18n="activity">Activity</span>
+              <small data-i18n="activitySub">Trip history</small>
+            </button>
+
+            <button class="feature-card" type="button" data-feature="support">
+              <div class="card-icon support-icon">✆</div>
+              <span data-i18n="support">Review & Customer Support</span>
+              <small data-i18n="supportSub">Feedback & help</small>
+            </button>
+          </section>
+
+          <section id="feature-detail" class="feature-detail">
+            <h2 id="detail-title" data-i18n="ride">Ride</h2>
+            <p id="detail-copy" data-i18n="rideText">Book a ride, set your fare, and let nearby drivers bid for your trip.</p>
+          </section>
+        </main>
+      </div>
     </div>
 
-    <div id="toast" class="toast" role="status"></div>
+    <div id="account-modal" class="modal-backdrop hidden" aria-hidden="true">
+      <div class="account-modal" role="dialog" aria-modal="true" aria-labelledby="account-title">
+        <button id="close-modal" class="close-modal" type="button" aria-label="Close account">×</button>
+
+        <div class="account-header">
+          <div class="profile-avatar" id="modal-avatar">U</div>
+          <div>
+            <h3 id="account-title">My Account</h3>
+            <p id="modal-email">user@example.com</p>
+          </div>
+        </div>
+
+        <div class="account-form">
+          <div class="field-group">
+            <label for="account-name">Username</label>
+            <input id="account-name" type="text" value="Uthao User" />
+          </div>
+          <div class="field-group">
+            <label for="account-email">Email</label>
+            <input id="account-email" type="email" value="user@example.com" />
+          </div>
+          <div class="field-group">
+            <label for="account-phone">Phone</label>
+            <input id="account-phone" type="tel" value="+977 9800000000" />
+          </div>
+          <div class="field-group">
+            <label for="account-image">Profile Picture URL</label>
+            <input id="account-image" type="url" placeholder="https://example.com/avatar.jpg" />
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="save-profile" class="primary-btn small" type="button">Save Changes</button>
+          <button id="logout-btn" class="secondary-btn" type="button">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="script.js"></script>
   </body>
 </html>
