@@ -12,7 +12,7 @@
 <body>
     <div class="app-shell">
         <header class="topbar">
-            <div class="brand">
+            <div class="brand" aria-label="UTHAO home">
                 <span class="brand-mark" aria-hidden="true">U</span>
                 <div>
                     <h1>UTHAO</h1>
@@ -29,24 +29,57 @@
         </header>
 
         <main>
-            <section id="login-section" class="panel section">
-                <div class="hero-card">
-                    <p class="eyebrow">Welcome back</p>
-                    <h2>Hop in. Name your price.</h2>
-                    <p class="lede">City rides, intercity, courier, freight and food — seven services, one app.</p>
+            <section id="login-section" class="panel section auth-screen">
+                <div class="auth-layout">
+                    <div class="auth-visual">
+                        <div class="visual-badge">Live mobility</div>
+                        <h2>Move smarter across your city.</h2>
+                        <p class="lede">Ride, courier, freight, and food — all in one premium app built for speed and control.</p>
+
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <strong>2.4k+</strong>
+                                <span>Active drivers</span>
+                            </div>
+                            <div class="stat-card">
+                                <strong>4.8/5</strong>
+                                <span>Average rating</span>
+                            </div>
+                            <div class="stat-card">
+                                <strong>18 min</strong>
+                                <span>Quickest ride</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="auth-panel">
+                        <div class="signin-header">
+                            <p class="eyebrow">Welcome back</p>
+                            <h3>Sign in to UTHAO</h3>
+                        </div>
+
+                        <form id="authForm" class="glass-form" novalidate>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="you@email.com" required>
+                            <span class="error-message" id="email-error">Enter a valid email</span>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="At least 4 characters" required>
+                            <span class="error-message" id="password-error">Password required</span>
+
+                            <div class="login-meta">
+                                <label class="remember-box">
+                                    <input type="checkbox" checked>
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#" class="mini-link">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="primary-btn pop">Enter UTHAO</button>
+                            <p id="login-status" class="status-line"></p>
+                        </form>
+                    </div>
                 </div>
-                <form id="authForm" class="glass-form" novalidate>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="you@email.com" required>
-                    <span class="error-message" id="email-error">Enter a valid email</span>
-
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="At least 4 characters" required>
-                    <span class="error-message" id="password-error">Password required</span>
-
-                    <button type="submit" class="primary-btn pop">Enter UTHAO</button>
-                    <p id="login-status" class="status-line"></p>
-                </form>
             </section>
 
             <section id="dashboard-section" class="section hidden">
