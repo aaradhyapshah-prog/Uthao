@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <main class="login-panel">
+      <main id="login-screen" class="login-screen">
         <div class="stats-block">
           <p>2.4k+ <span>Active drivers</span></p>
           <p>4.8/5 <span>Average rating</span></p>
@@ -63,9 +63,73 @@
           </div>
 
           <button type="submit" class="primary-btn pop">Enter UTHAO</button>
-          <p id="login-status" class="status-line hidden">Could not read response.</p>
-          <div class="status-pill hidden">Could not read response.</div>
+          <p id="login-status" class="status-line hidden"></p>
         </form>
+      </main>
+
+      <main id="dashboard-screen" class="dashboard-screen hidden">
+        <header class="dashboard-header">
+          <div class="dashboard-brand">
+            <div class="brand-mark">U</div>
+            <div>
+              <h2>Uthao</h2>
+              <p>You set the fare. Drivers compete.</p>
+            </div>
+          </div>
+          <button id="profile-btn" class="profile-btn" type="button" aria-label="Profile">U</button>
+        </header>
+
+        <section class="dashboard-banner">
+          <p class="eyebrow invert">LIVE IN YOUR CITY</p>
+          <h3>Where to?</h3>
+          <p>Pick a service. Bid the fare. Drivers come to you.</p>
+        </section>
+
+        <section class="services-grid">
+          <button class="service-card ride" type="button">
+            <span>◆</span>
+            <strong>City Ride</strong>
+            <small>Bid your fare</small>
+          </button>
+          <button class="service-card intercity" type="button">
+            <span>▣</span>
+            <strong>Intercity</strong>
+            <small>City to city</small>
+          </button>
+          <button class="service-card courier" type="button">
+            <span>✉</span>
+            <strong>Courier</strong>
+            <small>Send a parcel</small>
+          </button>
+          <button class="service-card freight" type="button">
+            <span>▣</span>
+            <strong>Freight</strong>
+            <small>Move cargo</small>
+          </button>
+          <button class="service-card food" type="button">
+            <span>✦</span>
+            <strong>Food</strong>
+            <small>Order meals</small>
+          </button>
+          <button class="service-card wallet" type="button">
+            <span>◈</span>
+            <strong>Wallet</strong>
+            <small>Offers</small>
+          </button>
+          <button class="service-card activity" type="button">
+            <span>◷</span>
+            <strong>Activity</strong>
+            <small>Trips</small>
+          </button>
+        </section>
+
+        <nav class="bottom-nav" aria-label="Main navigation">
+          <button class="nav-item is-active" type="button">Home</button>
+          <button class="nav-item" type="button">Activity</button>
+          <button class="nav-item" type="button">Wallet</button>
+          <button class="nav-item" type="button">Settings</button>
+          <button class="nav-item" type="button">Help</button>
+        </nav>
       </main>
     </div>
 
